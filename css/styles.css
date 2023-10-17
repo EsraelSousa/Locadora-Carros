@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.2rem;
+}
+
+#logo {
+    width: 100%;
+}
+.nav-link{
+    transition: .3s;
+    border-bottom: 2px solid transparent;
+}
+.nav-link:hover {
+    letter-spacing: 1px;
+    border-color: #178cec;
+}
+
+/*Section inicial*/
+#section-one {
+    position: relative;
+    height: 300px;
+    background: rgb(2, 3, 4);
+    background-image: url('../img/golf.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#section-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+#text-content {
+    position: absolute;
+    top: 50%;
+    right: -25%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
+
+#titulo-h6 {
+    font-size: 1rem;
+    color: #178cec;
+}
+
+#titulo-h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+#titulo-h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 400;
+}
