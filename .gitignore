@@ -1,0 +1,18 @@
+# Pacotes Node
+node_modules
+
+# Ambiente
+.env
+
+# Build
+dist
+
+# Cobertura de Testes
+coverage
+
+# Docker
+.docker
+
+# Editor
+.vscode
+.idea
