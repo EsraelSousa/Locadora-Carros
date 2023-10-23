@@ -32,6 +32,9 @@ model User {
   // Relações de User com CarImage
   CarImage_created_by CarImage[] @relation("User|CarImage")
 
+  // Relações de User com Rental
+  Rental_created_by Rental[] @relation("User|Rental_created_by")
+
   @@map("users")
 }
 
@@ -99,6 +102,9 @@ model Car {
   // Relações de Cars com CarImage
   CarImage CarImage[] @relation("Car|CarImage")
 
+  // Relações de Cars com Rental
+  Rental Rental[] @relation("Car|Rental")
+
   @@map("cars")
 }
 
@@ -163,7 +169,35 @@ model Costumer {
   driver_license_category DriverLicenceCategory
   created_at              DateTime              @default(now())
 
+  // Relações de Costumer com Rental
+  Rental Rental[] @relation("Costumer|Rental")
+
   @@map("costumers")
+}
+
+model Rental {
+  id              Int      @id @default(autoincrement())
+  car_id          Int
+  costumer_id     Int
+  start_date      DateTime
+  end_date        DateTime
+  expected_return DateTime
+  total           Float
+  created_at      DateTime @default(now())
+  created_by      Int
+  updated_at      DateTime @updatedAt
+  updated_by      Int?
+
+  // Relações de Rental com Car
+  Car Car @relation("Car|Rental", fields: [car_id], references: [id])
+
+  // Relações de Rental com Costumer
+  Costumer Costumer @relation("Costumer|Rental", fields: [costumer_id], references: [id])
+
+  // Relações de Rental com User
+  User_created_by User @relation("User|Rental_created_by", fields: [created_by], references: [id])
+
+  @@map("rentals")
 }
 
 enum CarStatus {
