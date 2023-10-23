@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  avatar_url String?
+  created_at DateTime @default(now())
+
+  // Relações de User com CarOptional
+  CarOptional_created_by CarOptional[] @relation("User|CarOptional")
+
+  // Relações de User com CarModel
+  CarModel_created_by CarModel[] @relation("User|CarModel_created_by")
+  CarModel_updated_by CarModel[] @relation("User|CarModel_updated_by")
+
+  // Relações de User com CarBrand
+  CarBrand_created_by CarBrand[] @relation("User|CarBrand_created_by")
+  CarBrand_updated_by CarBrand[] @relation("User|CarBrand_updated_by")
+
+  // Relações de User com CarOptional
+  OptionalOnCar_created_by OptionalOnCar[] @relation("User|OptionalOnCar")
+
+  // Relações de User com CarImage
+  CarImage_created_by CarImage[] @relation("User|CarImage")
+
+  // Relações de User com Rental
+  Rental_created_by Rental[] @relation("User|Rental_created_by")
+
+  @@map("users")
+}
+
+model CarBrand {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  created_by Int
+  created_at DateTime @default(now())
+  updated_by Int?
+  updated_at DateTime @updatedAt
+
+  // Relações de CarBrand com CarModel
+  CarModel CarModel[] @relation("CarBrand|CarModel")
+
+  // Relações de CarBrand com Car
+  Car Car[] @relation("Car|CarBrand")
+
+  // Relações de CarBrand com User
+  User_created_by User  @relation("User|CarBrand_created_by", fields: [created_by], references: [id])
+  User_updated_by User? @relation("User|CarBrand_updated_by", fields: [updated_by], references: [id])
+
+  @@map("car_brands")
+}
+
+model CarModel {
+  id         Int      @id @default(autoincrement())
+  brand_id   Int
+  name       String   @unique
+  created_by Int
+  created_at DateTime @default(now())
+  updated_by Int?
+  updated_at DateTime @updatedAt
+
+  // Relações de CarModel com CarBrand
+  CarBrand CarBrand @relation("CarBrand|CarModel", fields: [brand_id], references: [id])
+
+  // Relações de CarModel com Car
+  Car Car[] @relation("Car|CarModel")
+
+  // Relações de CarModel com User
+  User_created_by User  @relation("User|CarModel_created_by", fields: [created_by], references: [id])
+  User_updated_by User? @relation("User|CarModel_updated_by", fields: [updated_by], references: [id])
+
+  @@map("car_models")
+}
+
+model Car {
+  id            Int       @id @default(autoincrement())
+  brand_id      Int
+  model_id      Int
+  status        CarStatus
+  license_plate String    @unique @db.VarChar(8)
+  daily_rate    Float
+  fine_amount   Float
+
+  // Relações de Cars com CarBrand
+  CarBrand CarBrand @relation("Car|CarBrand", fields: [brand_id], references: [id])
+
+  // Relações de Cars com CarModel
+  CarModel CarModel @relation("Car|CarModel", fields: [model_id], references: [id])
+
+  // Relações de Cars com OptionalOnCar
+  CarOptional OptionalOnCar[] @relation("Car|OptionalOnCar")
+
+  // Relações de Cars com CarImage
+  CarImage CarImage[] @relation("Car|CarImage")
+
+  // Relações de Cars com Rental
+  Rental Rental[] @relation("Car|Rental")
+
+  @@map("cars")
+}
+
+model CarImage {
+  id         Int      @id @default(autoincrement())
+  car_id     Int
+  path       String
+  created_by Int
+  created_at DateTime @default(now())
+
+  // Relações de CarImage com Car
+  Car Car @relation("Car|CarImage", fields: [car_id], references: [id])
+
+  // Relações de User com CarImage
+  User_created_by User @relation("User|CarImage", fields: [created_by], references: [id])
+
+  @@map("car_images")
+}
+
+model CarOptional {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  icon_path  String
+  created_by Int
+  created_at DateTime @default(now())
+
+  // Relações de CarOptional com User
+  User_created_by User @relation("User|CarOptional", fields: [created_by], references: [id])
+
+  // Relações de CarOptional com OptionalOnCar
+  OptionalOnCar OptionalOnCar[] @relation("CarOptional|OptionalOnCar")
+
+  @@map("car_optionals")
+}
+
+model OptionalOnCar {
+  car_id      Int
+  optional_id Int
+  created_by  Int
+  created_ay  DateTime @default(now())
+
+  // Relações de OptionalOnCar com Car
+  Car Car @relation("Car|OptionalOnCar", fields: [car_id], references: [id])
+
+  // Relações de OptionalOnCar com CarOptional
+  CarOptional CarOptional @relation("CarOptional|OptionalOnCar", fields: [optional_id], references: [id])
+
+  // Relações de OptionalOnCar com User
+  User_created_by User @relation("User|OptionalOnCar", fields: [created_by], references: [id])
+
+  @@id([car_id, optional_id])
+  @@map("optionals_on_cars")
+}
+
+model Costumer {
+  id                      Int                   @id @default(autoincrement())
+  name                    String
+  email                   String                @unique
+  password                String
+  avatar_url              String?
+  driver_license          String                @unique
+  driver_license_category DriverLicenceCategory
+  created_at              DateTime              @default(now())
+
+  // Relações de Costumer com Rental
+  Rental Rental[] @relation("Costumer|Rental")
+
+  @@map("costumers")
+}
+
+model Rental {
+  id              Int      @id @default(autoincrement())
+  car_id          Int
+  costumer_id     Int
+  start_date      DateTime
+  end_date        DateTime
+  expected_return DateTime
+  total           Float
+  created_at      DateTime @default(now())
+  created_by      Int
+  updated_at      DateTime @updatedAt
+  updated_by      Int?
+
+  // Relações de Rental com Car
+  Car Car @relation("Car|Rental", fields: [car_id], references: [id])
+
+  // Relações de Rental com Costumer
+  Costumer Costumer @relation("Costumer|Rental", fields: [costumer_id], references: [id])
+
+  // Relações de Rental com User
+  User_created_by User @relation("User|Rental_created_by", fields: [created_by], references: [id])
+
+  @@map("rentals")
+}
+
+enum CarStatus {
+  available
+  unavailable
+}
+
+enum DriverLicenceCategory {
+  A
+  AB
+  AC
+  AD
+  AE
+  B
+  C
+  D
+  E
+}
