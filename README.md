@@ -5,7 +5,7 @@
 - [Daniel Sobrinho](https://github.com/daniel-sobrinho)
 - [Esrael Sousa](https://github.com/EsraelSousa)
 - [Francinilson Rodrigues](https://github.com/Nilson-Rodrigues)
-- Ricardo Martins
+- [Ricardo Martins](https://github.com/RicardoMart922)
 
 ## Instalação
 Para instalar a aplicação no seu ambiente de desenvolvimento, você pode utilizar o docker ou o node js instalado em sua máquina.
