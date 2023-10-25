@@ -8,7 +8,9 @@
 - Ricardo Martins
 
 ## Instalação
-Lorem Ipsum
+Para instalar a aplicação no seu ambiente de desenvolvimento, você pode utilizar o docker ou o node js instalado em sua máquina.
+
+O passo abaixo deve ser realizado independente do método de instalação.
 
 - Para executar a aplicação utilizando o docker faça uma cópia do arquivo `.env.example` na raiz do projeto e renomeie a cópia para `.env`.
 
