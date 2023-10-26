@@ -1,3 +1,105 @@
-<p class="text-center mt-5">
-  Olá <strong>{{ name }}</strong>, seu email é <strong>{{ email }}</strong>
-</p>
+<main>
+  {{> navbar}}
+
+  <section class="mt-6">
+    <div class="flex items-center bg-neutral-800 rounded-[20px] p-10 ">
+      <div class="w-1/2 flex items-center flex-col">
+        <div>
+          <p class="text-blue-700 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+            1ª em aluguel de carros na Serra da Ibiapaba
+          </p>
+          <p class="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+            Alugue os melhores<br />Carros da Cidade
+          </p>
+          <p class="text-white font-medium md:text-lg lg:text-xl xl:text-2xl">
+            Faça sua reserva.
+          </p>
+        </div>
+      </div>
+      <div class="w-1/2">
+        <img src="/static/images/golf.webp">
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-6">
+    <div class="mb-3">
+      <h2 class="text-4xl font-bold">Carros mais buscados</h2>
+      <p>Veja os carros mais buscados em nossa locadora</p>
+    </div>
+    <div class="flex justify-between gap-x-5">
+      <div
+        class="border-solid border-black w-full h-[400px] rounded-lg bg-[url('/static/images/gol.webp')] bg-cover bg-center shadow-2xl">
+        <p class="text-white font-black mt-4 ml-4 text-2xl">Volkswagen</p>
+        <p class="text-white font-black uppercase ml-4 text-2xl">Corolla</p>
+      </div>
+      <div
+        class="border-solid border-black w-full h-[400px] rounded-lg bg-[url('/static/images/gol.webp')] bg-cover bg-center shadow-2xl">
+        <p class="text-white font-black mt-4 ml-4 text-2xl">Volkswagen</p>
+        <p class="text-white font-black uppercase ml-4 text-2xl">Corolla</p>
+      </div>
+      <div
+        class="border-solid border-black w-full h-[400px] rounded-lg bg-[url('/static/images/gol.webp')] bg-cover bg-center shadow-2xl">
+        <p class="text-white font-black mt-4 ml-4 text-2xl">Volkswagen</p>
+        <p class="text-white font-black uppercase ml-4 text-2xl">Corolla</p>
+      </div>
+      <div
+        class="border-solid border-black w-full h-[400px] rounded-lg bg-[url('/static/images/gol.webp')] bg-cover bg-center shadow-2xl">
+        <p class="text-white font-black mt-4 ml-4 text-2xl">Volkswagen</p>
+        <p class="text-white font-black uppercase ml-4 text-2xl">Corolla</p>
+      </div>
+      <div
+        class="border-solid border-black w-full h-[400px] rounded-lg bg-[url('/static/images/gol.webp')] bg-cover bg-center shadow-2xl">
+        <p class="text-white font-black mt-4 ml-4 text-2xl">Volkswagen</p>
+        <p class="text-white font-black uppercase ml-4 text-2xl">Corolla</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <p class="text-center mb-5 text-lg">Para clientes assim como você!</p>
+    <div class="flex justify-center gap-x-15">
+      <div class="w-[350px] text-center">
+        <div class="mx-auto rounded-full bg-white shadow-2xl flex justify-center	items-center w-[200px] h-[200px]">
+          <i class="fa-solid fa-couch text-8xl text-blue-700"></i>
+        </div>
+        <p class="mt-6 text-3xl font-bold">Conforto</p>
+        <p class="mt-3">
+          Com alto padrão de conforto, nossos<br />
+          carros contam com o melhor conforto<br />
+          que uma locadora de automóveis<br />
+          pode oferecer ao seu cliente.
+        </p>
+      </div>
+      <div class="w-[350px] text-center">
+        <p class="mb-10 text-3xl font-bold">
+          Veja nossas<br />
+          principais vantagens
+        </p>
+        <div class="mx-auto rounded-full bg-white shadow-2xl flex justify-center	items-center w-[200px] h-[200px]">
+          <i class="fa-solid fa-car text-8xl text-blue-700"></i>
+        </div>
+        <p class="mt-6 text-3xl font-bold">Carros novos</p>
+        <p class="mt-3">
+          Todos nossos carros são do ano, em<br />
+          perfeitas condições sem qualquer<br />
+          tipo de avaria
+        </p>
+      </div>
+      <div class="w-[350px] text-center">
+        <div class="mx-auto rounded-full bg-white shadow-2xl flex justify-center	items-center w-[200px] h-[200px]">
+          <i class="fa-solid fa-shield text-8xl text-blue-700"></i>
+        </div>
+        <p class="mt-6 text-3xl font-bold">Conforto</p>
+        <p class="mt-3">
+          Sua segurança é nossa maior preocupação<br />
+          enquanto estiver utilizando nossos carros<br />
+          você pode contar com um seguro que<br />
+          vai assegurar qualquer situação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {{> footer}}
+</main>

@@ -9,6 +9,7 @@ import session from 'express-session'
 import FileStore from 'session-file-store'
 
 import { authConfig } from '@config/auth'
+import { staticConfig } from '@config/static'
 
 import { routes } from './routes'
 
@@ -45,5 +46,6 @@ app.set('views', './views/site')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(routes)
+app.use('/static', express.static(staticConfig.staticFolder))
 
 export { app }
