@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 
+import { IHashProvider } from '@shared/container/providers/HashProvider/models/IHashProvider'
 import { type IService } from '@shared/protocols/IService'
 
 import { ICostumerRepository } from '../../repositories/ICostumerRepository'
@@ -33,7 +34,10 @@ interface IRequest {
 export class CreateCostumerService implements IService {
   constructor(
     @inject('CostumerRepository')
-    private readonly costumerRepository: ICostumerRepository
+    private readonly costumerRepository: ICostumerRepository,
+
+    @inject('HashProvider')
+    private readonly hashProvider: IHashProvider
   ) {}
 
   async execute({
@@ -70,11 +74,14 @@ export class CreateCostumerService implements IService {
       throw new Error('Driver license already exists')
     }
 
+    const password = await this.hashProvider.hash(cpf.replace(/\D/g, ''))
+
     await this.costumerRepository.create({
       name,
       email,
       cpf: cpf.replace(/\D/g, ''),
       phone,
+      password,
       driver_license,
       driver_license_category,
       address,

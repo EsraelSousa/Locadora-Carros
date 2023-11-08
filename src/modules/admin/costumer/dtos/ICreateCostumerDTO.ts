@@ -3,6 +3,7 @@ export interface ICreateCostumerDTO {
   email: string
   cpf: string
   phone: string
+  password: string
   driver_license: string
   driver_license_category:
     | 'A'

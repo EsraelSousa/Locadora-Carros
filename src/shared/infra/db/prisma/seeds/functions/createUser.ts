@@ -1,4 +1,4 @@
-import { BCryptHashProvider } from '@modules/authentication/providers/HashProvider/implementations/BCryptHashProvider'
+import { BCryptHashProvider } from '@shared/container/providers/HashProvider/implementations/BCryptHashProvider'
 
 import { prisma } from '../../client'
 
