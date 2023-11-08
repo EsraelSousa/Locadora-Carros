@@ -12,7 +12,7 @@ export class ListCarPageService implements IService {
   ) {}
 
   async execute(search: string): Promise<object> {
-    const cars = await this.carRepository.list()
+    const cars = await this.carRepository.list(search)
 
     const mappedData = cars.map(car => {
       return {

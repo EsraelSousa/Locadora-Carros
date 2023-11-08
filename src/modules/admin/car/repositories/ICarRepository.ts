@@ -13,7 +13,7 @@ export interface ICarRepository {
   listModels(brand_id: number): Promise<CarModel[]>
   listOptionals(): Promise<CarOptional[]>
   create(data: ICreateCarDTO): Promise<Car>
-  list(): Promise<any[]>
+  list(search?: string): Promise<any[]>
   findById(car_id: number): Promise<any | null>
   update(data: IUpdateCarDTO): Promise<any>
 }

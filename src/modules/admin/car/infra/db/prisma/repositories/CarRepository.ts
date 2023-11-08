@@ -75,7 +75,31 @@ export class CarRepository implements ICarRepository {
     return car
   }
 
-  async list(): Promise<any[]> {
+  async list(search?: string): Promise<any[]> {
+    if (search === 'undefined') {
+      const cars = await prisma.car.findMany({
+        select: {
+          id: true,
+          license_plate: true,
+          status: true,
+          daily_rate: true,
+          fine_amount: true,
+          CarBrand: {
+            select: {
+              name: true
+            }
+          },
+          CarModel: {
+            select: {
+              name: true
+            }
+          }
+        }
+      })
+
+      return cars
+    }
+
     const cars = await prisma.car.findMany({
       select: {
         id: true,
@@ -92,6 +116,11 @@ export class CarRepository implements ICarRepository {
           select: {
             name: true
           }
+        }
+      },
+      where: {
+        license_plate: {
+          contains: search
         }
       }
     })
