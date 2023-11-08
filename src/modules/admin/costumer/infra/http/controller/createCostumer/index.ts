@@ -37,5 +37,7 @@ export class CreateCostumerController implements IController {
       zip_code,
       created_by: 1
     })
+
+    response.redirect('/admin/costumer')
   }
 }

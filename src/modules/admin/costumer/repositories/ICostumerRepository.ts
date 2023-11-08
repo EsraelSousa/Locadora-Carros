@@ -7,4 +7,5 @@ export interface ICostumerRepository {
   findByEmail(email: string): Promise<Costumer | null>
   findByCpf(cpf: string): Promise<Costumer | null>
   findByDriverLicense(driver_license: string): Promise<Costumer | null>
+  list(search?: string): Promise<Costumer[]>
 }

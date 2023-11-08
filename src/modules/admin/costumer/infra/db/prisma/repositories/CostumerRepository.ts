@@ -69,4 +69,36 @@ export class CostumerRepository implements ICostumerRepository {
 
     return costumer
   }
+
+  async list(search?: string): Promise<Costumer[]> {
+    if (search === 'undefined') {
+      const costumers = await prisma.costumer.findMany()
+
+      return costumers
+    }
+
+    let where = {}
+
+    if (search) {
+      where = {
+        OR: [
+          {
+            name: search
+          },
+          {
+            email: search
+          },
+          {
+            cpf: search.replace(/\D/g, '')
+          }
+        ]
+      }
+    }
+
+    const costumers = await prisma.costumer.findMany({
+      where
+    })
+
+    return costumers
+  }
 }
