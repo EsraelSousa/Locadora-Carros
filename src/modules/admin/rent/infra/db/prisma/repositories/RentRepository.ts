@@ -15,12 +15,44 @@ export class RentRepository implements IRentRepository {
       data: {
         car_id,
         costumer_id,
-        start_date,
-        expected_return,
+        start_date: new Date(start_date),
+        expected_return: new Date(expected_return),
         created_by
       }
     })
 
     return rent
+  }
+
+  async list(): Promise<any[]> {
+    const rentals = await prisma.rental.findMany({
+      select: {
+        id: true,
+        start_date: true,
+        expected_return: true,
+        Car: {
+          select: {
+            license_plate: true,
+            CarBrand: {
+              select: {
+                name: true
+              }
+            },
+            CarModel: {
+              select: {
+                name: true
+              }
+            }
+          }
+        },
+        Costumer: {
+          select: {
+            name: true
+          }
+        }
+      }
+    })
+
+    return rentals
   }
 }
