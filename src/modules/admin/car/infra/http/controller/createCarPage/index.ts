@@ -10,8 +10,6 @@ export class CreateCarPageController implements IController {
 
     const data = await createCarPageService.execute()
 
-    console.log(data)
-
     response.render('admin/car/create', data)
   }
 }

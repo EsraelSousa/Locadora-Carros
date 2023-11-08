@@ -10,8 +10,8 @@ export class ListCarPageController implements IController {
 
     const listCarPageService = container.resolve(ListCarPageService)
 
-    const data = await listCarPageService.execute(String(search))
+    const cars = await listCarPageService.execute(String(search))
 
-    response.render('admin/car', data)
+    response.render('admin/car', cars)
   }
 }

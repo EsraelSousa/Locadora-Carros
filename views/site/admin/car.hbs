@@ -29,13 +29,16 @@
         </tr>
       </thead>
       <tbody>
-        {{!-- {{#each costumers}}
+        {{#each cars}}
         <tr>
-          <td class="p-1 border-neutral-800 border">{{this.name}}</td>
-          <td class="p-1 border-neutral-800 border">{{this.email}}</td>
-          <td class="p-1 border-neutral-800 border text-center">{{this.phone}}</td>
+          <td class="p-1 border-neutral-800 border">{{this.brand}}</td>
+          <td class="p-1 border-neutral-800 border">{{this.model}}</td>
+          <td class="p-1 border-neutral-800 border text-center">{{this.license_plate}}</td>
+          <td class="p-1 border-neutral-800 border text-center">{{this.status}}</td>
+          <td class="p-1 border-neutral-800 border text-center">{{this.daily_rate}}</td>
+          <td class="p-1 border-neutral-800 border text-center">{{this.fine_amount}}</td>
           <td class="p-1 border-neutral-800 border text-center">
-            <form action="/admin/costumer/edit/{{this.id}}" method="get">
+            <form action="/admin/car/edit/{{this.id}}" method="get">
               <button class="bg-yellow-300 py-1 px-2 rounded">
                 Editar <i class="fa-regular fa-pen-to-square"></i>
               </button>
@@ -43,7 +46,7 @@
 
           </td>
         </tr>
-        {{/each}} --}}
+        {{/each}}
       </tbody>
     </table>
   </section>
