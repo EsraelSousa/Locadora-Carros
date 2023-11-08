@@ -16,4 +16,5 @@ export interface ICarRepository {
   list(search?: string): Promise<any[]>
   findById(car_id: number): Promise<any | null>
   update(data: IUpdateCarDTO): Promise<any>
+  findByPlate(license_plate: string): Promise<any | null>
 }

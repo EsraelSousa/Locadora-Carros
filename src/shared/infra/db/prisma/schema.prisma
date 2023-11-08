@@ -193,10 +193,10 @@ model Rental {
   id              Int      @id @default(autoincrement())
   car_id          Int
   costumer_id     Int
-  start_date      DateTime
-  end_date        DateTime
-  expected_return DateTime
-  total           Float
+  start_date      DateTime @db.Date
+  end_date        DateTime? @db.Date
+  expected_return DateTime @db.Date
+  total           Float?
   created_at      DateTime @default(now())
   created_by      Int
   updated_at      DateTime @updatedAt

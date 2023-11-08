@@ -26,8 +26,6 @@ export class EditCarPageService implements IService {
       ).join(',')
     }
 
-    console.log(formattedCar)
-
     const cars = await this.carRepository.listBrands()
 
     const optionals = await this.carRepository.listOptionals()

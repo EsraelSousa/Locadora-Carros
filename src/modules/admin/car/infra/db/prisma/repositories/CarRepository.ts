@@ -185,4 +185,35 @@ export class CarRepository implements ICarRepository {
 
     return car
   }
+
+  async findByPlate(license_plate: string): Promise<any | null> {
+    const car = await prisma.car.findUnique({
+      where: {
+        license_plate
+      },
+      include: {
+        CarBrand: {
+          select: {
+            name: true
+          }
+        },
+        CarModel: {
+          select: {
+            name: true
+          }
+        },
+        CarOptional: {
+          select: {
+            CarOptional: {
+              select: {
+                name: true
+              }
+            }
+          }
+        }
+      }
+    })
+
+    return car
+  }
 }
