@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
-import { rootRouter } from '@modules/main/infra/http/routes/root.routes'
+import { adminRouter } from '@modules/admin/routes/admin.routes'
+import { mainRouter } from '@modules/main/infra/http/routes/main.routes'
 
 const routes = Router()
 
-routes.use('/', rootRouter)
+routes.use('/', mainRouter)
+routes.use('/admin', adminRouter)
 
 export { routes }

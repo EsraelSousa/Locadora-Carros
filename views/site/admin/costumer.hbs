@@ -1,0 +1,47 @@
+{{> admin/navbar}}
+<main>
+  <h1 class="text-center text-3xl font-semibold">Clientes</h1>
+
+  <section class="flex items-center gap-x-3 p-3 mt-3">
+    <div class="grow flex gap-x-1">
+      <input class="p-1 rounded outline-none border-solid border-neutral-800 border grow" type="text" placeholder="Buscar Cliente">
+      <button class="bg-neutral-800 text-white py-1 px-6 rounded">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    <button class="bg-neutral-800 text-white py-1 px-6 rounded" onclick="createCostumer()">
+      Novo Cliente
+    </button>
+  </section>
+
+  <section class="p-3">
+    <table class="border-neutral-800 border table-auto border-collapse w-full">
+      <thead>
+        <tr>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Nome</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">E-mail</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Telefone</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-1 border-neutral-800 border">Daniel da Cunha Cândido Sobrinho </td>
+          <td class="p-1 border-neutral-800 border">danielsobrinho.dev@gmail.com</td>
+          <td class="p-1 border-neutral-800 border text-center">(88) 99340-3861</td>
+          <td class="p-1 border-neutral-800 border text-center">
+            <button class="bg-yellow-300 py-1 px-2 rounded">
+              Editar <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  function createCostumer() {
+    window.location.href = '/admin/costumer/create'
+  }
+</script>

@@ -35,6 +35,9 @@ model User {
   // Relações de User com Rental
   Rental_created_by Rental[] @relation("User|Rental_created_by")
 
+  // Relações de User com Costumer
+  Costumer_created_by Costumer[] @relation("User|Costumer")
+
   @@map("users")
 }
 
@@ -163,14 +166,25 @@ model Costumer {
   id                      Int                   @id @default(autoincrement())
   name                    String
   email                   String                @unique
-  password                String
-  avatar_url              String?
+  cpf                     String                @unique @db.VarChar(11)
+  phone                   String
+  password                String?
   driver_license          String                @unique
   driver_license_category DriverLicenceCategory
+  address                 String
+  number                  String
+  complement              String?
+  city                    String
+  state                   String
+  zip_code                String
   created_at              DateTime              @default(now())
+  created_by              Int
 
   // Relações de Costumer com Rental
   Rental Rental[] @relation("Costumer|Rental")
+
+  // Relações de Costumer com User
+  User_created_by User @relation("User|Costumer", fields: [created_by], references: [id])
 
   @@map("costumers")
 }
