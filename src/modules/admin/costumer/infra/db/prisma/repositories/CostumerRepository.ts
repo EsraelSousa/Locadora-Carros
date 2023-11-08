@@ -1,4 +1,5 @@
 import { type ICreateCostumerDTO } from '@modules/admin/costumer/dtos/ICreateCostumerDTO'
+import { type IUpdateCostumerDTO } from '@modules/admin/costumer/dtos/IUpdateCostumerDTO'
 import { type ICostumerRepository } from '@modules/admin/costumer/repositories/ICostumerRepository'
 import { type Costumer } from '@prisma/client'
 import { prisma } from '@shared/infra/db/prisma/client'
@@ -102,5 +103,53 @@ export class CostumerRepository implements ICostumerRepository {
     })
 
     return costumers
+  }
+
+  async findById(id: number): Promise<Costumer | null> {
+    const costumer = await prisma.costumer.findUnique({
+      where: {
+        id
+      }
+    })
+
+    return costumer
+  }
+
+  async update({
+    id,
+    name,
+    email,
+    cpf,
+    phone,
+    driver_license,
+    driver_license_category,
+    address,
+    number,
+    complement,
+    city,
+    state,
+    zip_code
+  }: IUpdateCostumerDTO): Promise<Costumer | null> {
+    const costumer = await prisma.costumer.update({
+      where: {
+        id
+      },
+      data: {
+        name,
+        email,
+        cpf,
+        phone,
+        driver_license,
+        driver_license_category,
+        address,
+        number,
+        complement,
+        city,
+        state,
+        zip_code
+      }
+    })
+
+    return costumer
   }
 }

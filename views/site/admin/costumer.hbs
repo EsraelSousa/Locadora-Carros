@@ -4,7 +4,8 @@
 
   <section class="flex items-center gap-x-3 p-3 mt-3">
     <form class="grow flex gap-x-1" action="/admin/costumer" method="get">
-      <input class="p-1 rounded outline-none border-solid border-neutral-800 border grow" type="text" placeholder="Buscar Cliente" name="search">
+      <input class="p-1 rounded outline-none border-solid border-neutral-800 border grow" type="text"
+        placeholder="Buscar Cliente" name="search">
       <button class="bg-neutral-800 text-white py-1 px-6 rounded">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -31,9 +32,12 @@
           <td class="p-1 border-neutral-800 border">{{this.email}}</td>
           <td class="p-1 border-neutral-800 border text-center">{{this.phone}}</td>
           <td class="p-1 border-neutral-800 border text-center">
-            <button class="bg-yellow-300 py-1 px-2 rounded">
-              Editar <i class="fa-regular fa-pen-to-square"></i>
-            </button>
+            <form action="/admin/costumer/edit/{{this.id}}" method="get">
+              <button class="bg-yellow-300 py-1 px-2 rounded">
+                Editar <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+            </form>
+
           </td>
         </tr>
         {{/each}}
