@@ -1,0 +1,56 @@
+{{> admin/navbar}}
+<main>
+  <h1 class="text-center text-3xl font-semibold">Carros</h1>
+
+  <section class="flex items-center gap-x-3 p-3 mt-3">
+    <form class="grow flex gap-x-1" action="/admin/costumer" method="get">
+      <input class="p-1 rounded outline-none border-solid border-neutral-800 border grow" type="text"
+        placeholder="Buscar Carro" name="search">
+      <button class="bg-neutral-800 text-white py-1 px-6 rounded">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+    <button class="bg-neutral-800 text-white py-1 px-6 rounded" onclick="createCar()">
+      Novo Carro
+    </button>
+  </section>
+
+  <section class="p-3">
+    <table class="border-neutral-800 border table-auto border-collapse w-full">
+      <thead>
+        <tr>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Marca</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Modelo</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Placa</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Status</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Valor Diária</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Valor Multa</th>
+          <th class="bg-neutral-300 p-1 border-neutral-800 border">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{!-- {{#each costumers}}
+        <tr>
+          <td class="p-1 border-neutral-800 border">{{this.name}}</td>
+          <td class="p-1 border-neutral-800 border">{{this.email}}</td>
+          <td class="p-1 border-neutral-800 border text-center">{{this.phone}}</td>
+          <td class="p-1 border-neutral-800 border text-center">
+            <form action="/admin/costumer/edit/{{this.id}}" method="get">
+              <button class="bg-yellow-300 py-1 px-2 rounded">
+                Editar <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+            </form>
+
+          </td>
+        </tr>
+        {{/each}} --}}
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  function createCar() {
+    window.location.href = '/admin/car/create'
+  }
+</script>

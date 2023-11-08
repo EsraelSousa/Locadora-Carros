@@ -51,8 +51,6 @@ export class EditCostumerService implements IService {
     state,
     zip_code
   }: IRequest): Promise<void> {
-    console.log(id)
-
     await this.costumerRepository.update({
       id,
       name,

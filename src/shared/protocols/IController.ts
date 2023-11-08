@@ -1,5 +1,5 @@
 import { type Request, type Response } from 'express'
 
 export interface IController {
-  handle(request: Request, response: Response): Promise<void>
+  handle(request: Request, response: Response): Promise<any>
 }
